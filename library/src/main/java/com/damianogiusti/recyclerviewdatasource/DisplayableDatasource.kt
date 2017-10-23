@@ -21,10 +21,10 @@ fun <T, C, P> Flowable<List<T>>.bind(to: DisplayableDatasource<T, C, P>) {
     val datasource = to
 }
 
-fun <T, O : Observer<T>> Observable<T>.bind(to: O): Disposable {
+fun <T, O : Observer<List<T>>> Observable<List<T>>.bind(to: O): Disposable {
     return subscribe({ to.onNext(it) }, { to.onError(it) }, { to.onComplete() })
 }
 
-fun <T, O : Observer<T>> Flowable<T>.bind(to: O): Disposable {
+fun <T, O : Observer<List<T>>> Flowable<List<T>>.bind(to: O): Disposable {
     return subscribe({ to.onNext(it) }, { to.onError(it) }, { to.onComplete() })
 }
